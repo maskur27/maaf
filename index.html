@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maafin Aku Ya Sayang 🤍</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe5f1 50%, #ffd6e8 100%);
+            color: #5a4a6a;
+            overflow-x: hidden;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float 15s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            color: #d4567a;
+            margin-bottom: 20px;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: #7a6a8a;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(212, 86, 122, 0.15);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-section h2 {
+            color: #d4567a;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .content-section p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #5a4a6a;
+            font-size: 1.05em;
+        }
+
+        .apology-list {
+            background: #fff5f9;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #ff8fab;
+        }
+
+        .apology-list li {
+            margin: 10px 0;
+            color: #7a6a8a;
+            line-height: 1.6;
+        }
+
+        .interactive-section {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .interactive-section h2 {
+            font-size: 2em;
+            color: #d4567a;
+            margin-bottom: 30px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-angry {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .btn-happy {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .promise-section {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(212, 86, 122, 0.15);
+        }
+
+        .promise-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 15px 0;
+            background: #fff5f9;
+            border-radius: 15px;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .promise-item:nth-child(1) { animation-delay: 0.1s; }
+        .promise-item:nth-child(2) { animation-delay: 0.2s; }
+        .promise-item:nth-child(3) { animation-delay: 0.3s; }
+        .promise-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .promise-item span {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+
+        .final-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(212, 86, 122, 0.15);
+        }
+
+        .final-section h2 {
+            font-size: 2.2em;
+            color: #d4567a;
+            margin-bottom: 40px;
+            line-height: 1.4;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 500px;
+            margin: 20px;
+            animation: bounceIn 0.5s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .popup-content h3 {
+            color: #d4567a;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .popup-content p {
+            color: #7a6a8a;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff6b9d;
+            position: absolute;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts"></div>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Sayang… aku minta maaf ya 😔🤍</h1>
+            <p>Website ini aku bikin karena aku bener-bener nyesel dan pengen minta maaf dari hati.</p>
+            <button class="btn" onclick="scrollToContent()">Baca pelan-pelan ya 💌</button>
+        </section>
+
+        <section class="content-section" id="mainContent">
+            <h2>Dari Hati Aku 💔</h2>
+            <p>Sayang, aku bener-bener minta maaf atas sikap aku semalem dan tadi pagi. Aku sadar semalem aku nyuekin kamu, dan pagi ini aku malah ngeribetin kamu. Itu semua bikin kamu kesel dan capek secara perasaan, dan itu salah aku sepenuhnya.</p>
+            
+            <p>Aku nggak bermaksud ngejauhin kamu atau nggak peduli. Justru karena aku kurang peka dan terlalu fokus sama diri sendiri, aku jadi lupa gimana perasaan kamu. Harusnya aku bisa lebih hadir dan bikin kamu tenang, bukan malah bikin kamu ngambek.</p>
+            
+            <div class="apology-list">
+                <p><strong>Aku minta maaf karena:</strong></p>
+                <ul>
+                    <li>aku nggak responsif dan bikin kamu ngerasa diabaikan</li>
+                    <li>aku bikin kamu kepikiran</li>
+                    <li>aku malah nambah beban kamu pagi ini</li>
+                </ul>
+            </div>
+            
+            <p>Aku nyesel dan aku sadar sikap kayak gitu nggak seharusnya aku ulangin. Kamu penting buat aku, dan aku nggak mau kebiasaan buruk aku terus-terusan nyakitin kamu.</p>
+            
+            <p>Kalau kamu masih kesel, aku ngerti. Aku cuma pengen kamu tau kalau aku benar-benar minta maaf dan aku serius mau jadi lebih baik buat kamu.</p>
+            
+            <p style="text-align: center; font-size: 1.3em; color: #d4567a; font-weight: 700; margin-top: 30px;">Maafin aku ya, sayang 🤍</p>
+        </section>
+
+        <section class="interactive-section content-section">
+            <h2>Sekarang sayang masih marah nggak? 🥺</h2>
+            <div class="button-group">
+                <button class="btn btn-angry" id="angryBtn" onclick="moveButton()">😠 Masih</button>
+                <button class="btn btn-happy" onclick="showHappyResponse()">😊 Udah Enggak</button>
+            </div>
+        </section>
+
+        <section class="promise-section content-section">
+            <h2>Janji Aku ke Sayang 💝</h2>
+            <div class="promise-item">
+                <span>☑️</span>
+                <p><strong>Lebih peka</strong> dan ngerti perasaan kamu</p>
+            </div>
+            <div class="promise-item">
+                <span>☑️</span>
+                <p><strong>Nggak nyuekin lagi</strong> dan selalu responsif</p>
+            </div>
+            <div class="promise-item">
+                <span>☑️</span>
+                <p><strong>Ngedengerin kamu</strong> dengan serius</p>
+            </div>
+            <div class="promise-item">
+                <span>☑️</span>
+                <p><strong>Jadi tempat pulang</strong>, bukan sumber capek</p>
+            </div>
+        </section>
+
+        <section class="final-section content-section">
+            <h2>Aku sayang kamu.<br>Lebih dari gengsi aku sendiri. 🤍</h2>
+            <button class="btn" onclick="showFinalPopup()">💖 Aku Maafin</button>
+        </section>
+    </div>
+
+    <div class="popup" id="happyPopup">
+        <div class="popup-content">
+            <h3>Makasih ya sayang… 🥺🤍</h3>
+            <p>aku janji jaga kamu lebih baik dan nggak akan ngulangin lagi. Kamu berharga banget buat aku.</p>
+            <button class="btn" onclick="closePopup()" style="margin-top: 20px;">Tutup 💕</button>
+        </div>
+    </div>
+
+    <div class="popup" id="finalPopup">
+        <div class="popup-content">
+            <h3>Terima kasih ya sayang… 😭🤍</h3>
+            <p>aku bakal buktiin lewat sikap, bukan cuma kata-kata. I love you so much! 💕</p>
+            <button class="btn" onclick="closePopup()" style="margin-top: 20px;">🤍</button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        const heartsContainer = document.getElementById('hearts');
+        const heartSymbols = ['💕', '💖', '💗', '💝', '🤍', '💌'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 20000);
+        }
+
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createHeart, i * 1000);
+        }
+
+        setInterval(createHeart, 3000);
+
+        // Scroll reveal animation
+        function scrollToContent() {
+            document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Move button on hover (lucu!)
+        let moveCount = 0;
+        function moveButton() {
+            const btn = document.getElementById('angryBtn');
+            moveCount++;
+            
+            if (moveCount < 3) {
+                const x = Math.random() * 200 - 100;
+                const y = Math.random() * 100 - 50;
+                btn.style.transform = `translate(${x}px, ${y}px)`;
+                
+                setTimeout(() => {
+                    btn.style.transform = 'translate(0, 0)';
+                }, 500);
+            } else {
+                btn.textContent = '😢 Ya udah deh...';
+                btn.onclick = showHappyResponse;
+            }
+        }
+
+        function showHappyResponse() {
+            createConfetti();
+            document.getElementById('happyPopup').style.display = 'flex';
+        }
+
+        function showFinalPopup() {
+            createConfetti();
+            document.getElementById('finalPopup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('happyPopup').style.display = 'none';
+            document.getElementById('finalPopup').style.display = 'none';
+        }
+
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#ff8fab', '#ffc4d0', '#a8edea', '#fed6e3'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = confetti.style.width;
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+    </script>
+</body>
+</html>
